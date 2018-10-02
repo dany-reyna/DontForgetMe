@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Don\'t Forget Me</string>
+    <string name="logo_description">Logotipo</string>
+    <string name="signin">Iniciar sesión</string>
+    <string name="signup">Registrarse</string>
+    <string name="user">Usuario</string>
+    <string name="no_account_question">¿No tiene una cuenta?</string>
+    <string name="create_account_link">Cree una.</string>
+    <string name="next">Siguiente</string>
+    <string name="password">Contraseña</string>
+    <string name="forgotten_password">He olvidado mi contraseña</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="recover_account">Recupera tu cuenta</string>
+    <string name="recover_email_message">Podemos ayudarte a reestablecer tu contraseña. Primero escribe tu correo electrónico y sigue las instrucciones.</string>
+    <string name="email">Correo electrónico</string>
+    <string name="verify_identity">Verifica tu identidad</string>
+    <string name="verify_code_message">Ingresa el código que enviamos a la dirección de correo que escribiste previamente.</string>
+    <string name="code">Código</string>
+    <string name="change_password">Cambia tu contraseña</string>
+    <string name="change">Cambiar</string>
+    <string name="greeting">Hola Kevin</string>
+    <string name="action_settings">Settings</string>
+</resources>

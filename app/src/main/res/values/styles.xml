@@ -1,0 +1,98 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Centered" parent="AppTheme">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">50dp</item>
+        <item name="android:layout_marginEnd">50dp</item>
+    </style>
+
+    <style name="Button" parent="Centered">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Button.1">
+        <item name="android:background">@drawable/button1_shape</item>
+        <item name="android:textColor">@color/colorButton1Text</item>
+    </style>
+
+    <style name="Button.2">
+        <item name="android:background">@drawable/button2_shape</item>
+        <item name="android:textColor">@color/colorButton2Text</item>
+        <item name="android:layout_marginBottom">70dp</item>
+    </style>
+
+    <style name="Title" parent="Centered">
+        <item name="android:textSize">50sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginTop">70dp</item>
+    </style>
+
+    <style name="Input" parent="Centered">
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:layout_marginEnd">25dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Input.User">
+        <item name="android:drawableStart">@drawable/ic_face_black_48dp</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="Input.Password">
+        <item name="android:drawableStart">@drawable/ic_lock_outline_black_48dp</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="Input.Email">
+        <item name="android:drawableStart">@drawable/ic_mail_outline_black_48dp</item>
+        <item name="android:inputType">textEmailAddress</item>
+    </style>
+
+    <style name="Input.Code">
+        <item name="android:drawableStart">@drawable/ic_dialpad_black_48dp</item>
+        <item name="android:inputType">numberPassword</item>
+    </style>
+
+    <style name="FormText" parent="AppTheme">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="FormText.Link">
+        <item name="android:textColor">@color/colorLink</item>
+        <item name="android:layout_marginTop">35dp</item>
+    </style>
+
+    <style name="FormText.Paragraph">
+        <item name="android:layout_marginEnd">25dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
