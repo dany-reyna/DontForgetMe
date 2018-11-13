@@ -19,7 +19,7 @@
 
     <Button
         android:id="@+id/button_signin_main"
-        style="@style/Button.1"
+        style="@style/CenteredButton"
         android:text="@string/signin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
 
     <Button
         android:id="@+id/button_signup_main"
-        style="@style/Button.1"
+        style="@style/CenteredButton"
         android:layout_marginTop="50dp"
         android:text="@string/signup"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout_edit_task"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditTaskActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_edit_task_name"
+            style="@style/AppTheme.InputLayout"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/AppTheme.EditText.TaskName"
+                android:hint="@string/task_name_hint"
+                tools:ignore="Autofill" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/image_view_edit_task_linked_project_color"
+            style="@style/AppTheme.ImageView"
+            android:contentDescription="@string/project"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_task_name"
+            app:srcCompat="@drawable/ic_project_bookmark_red" />
+
+        <Spinner
+            android:id="@+id/spinner_edit_task_linked_project"
+            style="@style/AppTheme.Spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_edit_task_linked_project_color"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_task_name" />
+
+        <ImageView
+            android:id="@+id/image_view_edit_task_priority"
+            style="@style/AppTheme.ImageView"
+            android:contentDescription="@string/priority"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_edit_task_linked_project_color"
+            app:srcCompat="@drawable/ic_priority_low" />
+
+        <Spinner
+            android:id="@+id/spinner_edit_task_priority"
+            style="@style/AppTheme.Spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_edit_task_priority"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_edit_task_linked_project_color" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_edit_task_location"
+            style="@style/AppTheme.InputLayout"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_edit_task_priority">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/AppTheme.EditText.TaskLocation"
+                android:hint="@string/task_location_hint"
+                tools:ignore="Autofill" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_view_edit_task_start_date"
+            style="@style/AppTheme.TextView.Date"
+            android:text="@string/task_start_date_hint"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_edit_task_start_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_task_location" />
+
+        <TextView
+            android:id="@+id/text_view_edit_task_start_time"
+            style="@style/AppTheme.TextView.Time"
+            android:text="@string/task_start_time_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_view_edit_task_start_date"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_task_location" />
+
+        <TextView
+            android:id="@+id/text_view_edit_task_end_date"
+            style="@style/AppTheme.TextView.Date"
+            android:text="@string/task_end_date_hint"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_edit_task_end_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_edit_task_start_date" />
+
+        <TextView
+            android:id="@+id/text_view_edit_task_end_time"
+            style="@style/AppTheme.TextView.Time"
+            android:text="@string/task_end_time_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_view_edit_task_end_date"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_edit_task_start_time" />
+
+        <ImageView
+            android:id="@+id/image_view_edit_task_notification"
+            style="@style/AppTheme.ImageView"
+            android:contentDescription="@string/notification"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_edit_task_end_date"
+            app:srcCompat="@drawable/ic_notification" />
+
+        <Spinner
+            android:id="@+id/spinner_edit_task_notification"
+            style="@style/AppTheme.Spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_edit_task_notification"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_edit_task_end_date" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

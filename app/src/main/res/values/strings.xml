@@ -12,6 +12,8 @@
     <string name="create_account">Crear cuenta</string>
     <string name="confirm_password">Confirmar contraseña</string>
     <string name="recover_account">Recupera tu cuenta</string>
+    <string name="mail_subject_verification_code">Código de verificación</string>
+    <string name="from_name">LCRT - Don\'t Forget Me</string>
     <string name="recover_email_message">Podemos ayudarte a reestablecer tu contraseña. Primero escribe tu correo electrónico y sigue las instrucciones.</string>
     <string name="email">Correo electrónico</string>
     <string name="verify_identity">Verifica tu identidad</string>
@@ -19,6 +21,98 @@
     <string name="code">Código</string>
     <string name="change_password">Cambia tu contraseña</string>
     <string name="change">Cambiar</string>
-    <string name="greeting">Hola Kevin</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="sample_greeting">Hola usuario</string>
+    <string name="greeting">Hola %1$s</string>
+    <string name="tab_text_1">Hoy</string>
+    <string name="tab_text_2">+7 días</string>
+    <string name="tab_text_3">Mes</string>
+    <string name="tab_text_4">Proyectos</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="add_task">Añadir tarea</string>
+    <string name="add_project">Añadir proyecto</string>
+    <string name="priority">Prioridad</string>
+    <string name="priority_sample">Baja</string>
+    <string name="project">Proyecto</string>
+    <string name="empty_field_error_message">El campo no puede estar vacío</string>
+    <string name="long_username_error_message">El nombre de usuario debe tener máximo 15 caracteres</string>
+    <string name="short_password_error_message">La contraseña debe tener mínimo 6 caracteres</string>
+    <string name="long_password_error_message">La contraseña debe tener máximo 100 caracteres</string>
+    <string name="confirm_password_error">Las contraseñas no coinciden</string>
+    <string name="long_email_error_message">La dirección de correo debe tener máximo 100 caracteres</string>
+    <string name="email_format_error">El formato de la dirección de correo no es correcto</string>
+    <string name="random_code_length_error">El código es de 6 caracteres</string>
+    <string name="long_task_name_error_message">El nombre debe tener máximo 30 caracteres</string>
+    <string name="long_task_location_error_message">La ubicación debe tener máximo 100 caracteres</string>
+    <string name="random_code_error">Código incorrecto</string>
+    <string name="logging_out">Saliendo</string>
+    <string name="project_color">Color de proyecto</string>
+    <string name="task_name_sample">Reunión</string>
+    <string name="task_priority_error">Error</string>
+    <string name="task_location_sample">Calle YYY</string>
+    <string name="task_start_datetime_sample">20/10/18, 13:00</string>
+    <string name="task_end_datetime_sample">25/10/18, 15:00</string>
+    <string name="task_start_date_sample">20/10/18</string>
+    <string name="task_start_time_sample">13:00</string>
+    <string name="task_end_date_sample">25/10/18</string>
+    <string name="task_end_time_sample">15:00</string>
+    <string name="task_notification_sample">1 hora antes</string>
+    <string name="project_name_sample">1 - Proyecto blabla</string>
+    <string name="project_name_sample_2">2 - Proyecto haha</string>
+    <string name="project_color_sample">Azul</string>
+    <string name="project_client_sample">Cliente blabla</string>
+    <string name="project_desc_sample">Enim quo voluptate quia. Repudiandae fuga ex debitis. Voluptatum officia necessitatibus quibusdam et voluptates sint. Qui aut quidem repudiandae ex in. Natus maxime qui exercitationem repudiandae bla.</string>
+    <string name="project_deadline_sample">25/10/18</string>
+    <string name="menu_item_title_edit">Editar</string>
+    <string name="task_name_hint">Nombre</string>
+    <string name="task_location_hint">Ubicación</string>
+    <string name="task_start">inicio</string>
+    <string name="task_end">término</string>
+    <string name="task_start_date_hint">Fecha inicio</string>
+    <string name="task_start_time_hint">Hora inicio</string>
+    <string name="task_end_date_hint">Fecha fin</string>
+    <string name="task_end_time_hint">Hora fin</string>
+    <string name="no_date_set_error">Selecciona una fecha y hora de %1$s</string>
+    <string name="date_before_now_error">La fecha y hora de %1$s debe ser posterior a la fecha y hora actual</string>
+    <string name="date_after_deadline_error">La fecha y hora de %1$s debe ser anterior a la fecha tope del proyecto</string>
+    <string name="date_order_error">La fecha y hora de inicio debe ser anterior a la fecha y hora de término</string>
+    <string name="notification">Notificación</string>
+    <string name="menu_item_title_done">Listo</string>
+    <string name="menu_item_title_delete">Eliminar</string>
+    <string name="delete_task_prompt">La tarea será eliminada</string>
+    <string name="delete_project_prompt">El proyecto será eliminado</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="discard_changes_prompt">¿Descartar tus cambios?</string>
+    <string name="project_client_hint">Cliente</string>
+    <string name="project_desc_hint">Descripción</string>
+    <string name="project_name_hint">Nombre</string>
+    <string name="project_deadline_hint">Fecha tope</string>
+    <string-array name="priorities">
+        <item>Baja</item>
+        <item>Media</item>
+        <item>Alta</item>
+    </string-array>
+    <string-array name="notification_times">
+        <item>Ninguna</item>
+        <item>1 hora antes</item>
+        <item>2 horas antes</item>
+        <item>1 dia antes</item>
+        <item>2 dias antes</item>
+        <item>1 semana antes</item>
+    </string-array>
+    <string-array name="colors">
+        <item>Morado</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Amarillo</item>
+        <item>Cafe</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+    </string-array>
+    <string name="long_project_name_error_message">El nombre debe tener máximo 30 caracteres</string>
+    <string name="long_project_client_error_message">El cliente debe tener máximo 30 caracteres</string>
+    <string name="long_project_desc_error_message">La descripción debe tener máximo 200 caracteres</string>
+    <string name="no_deadline_set_error">Selecciona una fecha tope</string>
+    <string name="deadline_before_now_error">La fecha tope debe ser posterior a la fecha actual</string>
 </resources>

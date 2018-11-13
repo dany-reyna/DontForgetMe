@@ -9,6 +9,7 @@ Característica: Recuperar cuenta
     Y presione el botón "Siguiente"
 
   Escenario: Ingresar correo en formato incorrecto
+  o se excede de 100 caracteres
     Entonces debería ver un error en el campo "Correo electrónico"
 
   Escenario: Ingresar correo en formato correcto

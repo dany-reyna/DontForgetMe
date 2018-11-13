@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".EnterUsername">
+
+    <TextView
+        android:id="@+id/title_signin"
+        style="@style/LoginTheme.Title"
+        android:text="@string/signin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout_signin_user"
+        style="@style/LoginTheme.InputLayout"
+        android:layout_marginTop="150dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="15"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_signin">
+
+        <android.support.design.widget.TextInputEditText
+            style="@style/LoginTheme.EditText.User"
+            android:hint="@string/user"
+            tools:ignore="Autofill" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/text_view_no_account_question"
+        style="@style/LoginTheme.FormText"
+        android:layout_marginTop="35dp"
+        android:text="@string/no_account_question"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_layout_signin_user" />
+
+    <TextView
+        android:id="@+id/text_view_create_account_link"
+        style="@style/LoginTheme.FormText.Link"
+        android:layout_marginStart="5dp"
+        android:text="@string/create_account_link"
+        app:layout_constraintStart_toEndOf="@+id/text_view_no_account_question"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_layout_signin_user" />
+
+    <Button
+        android:id="@+id/button_signin_next"
+        style="@style/CenteredButton.Bottom"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

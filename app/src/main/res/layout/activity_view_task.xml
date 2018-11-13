@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewTaskActivity">
+
+    <TextView
+        android:id="@+id/text_view_task_name"
+        style="@style/AppTheme.TextView"
+        android:drawableStart="@drawable/ic_task_name"
+        android:text="@string/task_name_sample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_task_linked_project"
+        style="@style/AppTheme.TextView"
+        android:drawableStart="@drawable/ic_project_bookmark_red"
+        android:text="@string/project_name_sample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_name" />
+
+    <TextView
+        android:id="@+id/text_view_task_priority"
+        style="@style/AppTheme.TextView"
+        android:drawableStart="@drawable/ic_priority_low"
+        android:text="@string/priority_sample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_linked_project" />
+
+    <TextView
+        android:id="@+id/text_view_task_location"
+        style="@style/AppTheme.TextView"
+        android:drawableStart="@drawable/ic_location"
+        android:text="@string/task_location_sample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_priority" />
+
+    <TextView
+        android:id="@+id/text_view_task_start"
+        style="@style/AppTheme.TextView"
+        android:drawableStart="@drawable/ic_date"
+        android:text="@string/task_start_datetime_sample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_location" />
+
+    <TextView
+        android:id="@+id/text_view_task_end"
+        style="@style/AppTheme.TextView"
+        android:drawableStart="@drawable/ic_date"
+        android:text="@string/task_end_datetime_sample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_start" />
+
+    <TextView
+        android:id="@+id/text_view_task_notification"
+        style="@style/AppTheme.TextView"
+        android:drawableStart="@drawable/ic_notification"
+        android:text="@string/task_notification_sample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_end" />
+</android.support.constraint.ConstraintLayout>

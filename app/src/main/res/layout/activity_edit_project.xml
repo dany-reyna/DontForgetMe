@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout_edit_project"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProjectActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_edit_project_name"
+            style="@style/AppTheme.InputLayout"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/AppTheme.EditText.ProjectName"
+                android:hint="@string/project_name_hint"
+                tools:ignore="Autofill" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/image_view_edit_project_color"
+            style="@style/AppTheme.ImageView"
+            android:contentDescription="@string/project"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_project_name"
+            app:srcCompat="@drawable/ic_project_bookmark_red" />
+
+        <Spinner
+            android:id="@+id/spinner_edit_project_color"
+            style="@style/AppTheme.Spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_edit_project_color"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_project_name" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_edit_project_client"
+            style="@style/AppTheme.InputLayout"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_edit_project_color">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/AppTheme.EditText.ProjectClient"
+                android:hint="@string/project_client_hint"
+                tools:ignore="Autofill" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_edit_project_description"
+            style="@style/AppTheme.InputLayout"
+            app:counterEnabled="true"
+            app:counterMaxLength="200"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_project_client">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/AppTheme.EditText.ProjectDescription"
+                android:hint="@string/project_desc_hint"
+                tools:ignore="Autofill" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_view_edit_project_deadline"
+            style="@style/AppTheme.TextView.Date"
+            android:text="@string/project_deadline_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_edit_project_description" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>

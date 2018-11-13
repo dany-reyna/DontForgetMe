@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lcrt.dontforgetme">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/LoginTheme">
+            android:screenOrientation="portrait"
+            android:theme="@style/FirstScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,27 +22,63 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".IngresarUsuario"
+            android:name=".EnterUsername"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
-            android:name=".IngresarContrasena"
+            android:name=".EnterPassword"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
-            android:name=".CrearCuenta"
+            android:name=".CreateAccount"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
-            android:name=".RecuperarCuenta"
+            android:name=".RecoverAccount"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
-            android:name=".VerificarIdentidad"
+            android:name=".VerifyIdentity"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
-            android:name=".CambiarContrasena"
+            android:name=".ChangePassword"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
             android:name=".Dashboard"
-            android:label="@string/greeting"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewTaskActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewProjectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SpecificDateActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddTaskActivity"
+            android:parentActivityName=".Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditTaskActivity"
+            android:parentActivityName=".ViewTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddProjectActivity"
+            android:parentActivityName=".Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditProjectActivity"
+            android:parentActivityName=".ViewProjectActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

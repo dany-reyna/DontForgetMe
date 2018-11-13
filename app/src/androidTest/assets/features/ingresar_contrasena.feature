@@ -4,7 +4,8 @@ Característica: Ingresar contraseña
   Escribir la contraseña, verificarla, y dirigir a la pantalla "Dashboard"
   Ir a la pantalla "Recupera tu cuenta" si se presiona el enlace
 
-  Escenario: Ingresar contraseña incorrecta o dejar el campo vacío
+  Escenario: Ingresar contraseña incorrecta
+  o dejar el campo vacío
     Dado que estoy en la pantalla "Ingresar contraseña"
     Cuando escriba la contraseña
     Y presione el botón "Iniciar sesión"

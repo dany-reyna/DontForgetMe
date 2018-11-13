@@ -4,7 +4,9 @@ Característica: Ingresar usuario
   Escribir el nombre de usuario, verificarlo, y dirigir a la pantalla "Ingresar contraseña"
   Ir a la pantalla "Crear cuenta" si se presiona el enlace
 
-  Escenario: Ingresar usuario no existente o dejar el campo vacío
+  Escenario: Ingresar usuario no existente
+  o dejar el campo vacío
+  o se excede de 15 caracteres
     Dado que estoy en la pantalla "Ingresar usuario"
     Cuando escriba el usuario
     Y presione el botón "Siguiente"

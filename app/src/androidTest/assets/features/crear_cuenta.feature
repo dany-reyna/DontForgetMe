@@ -11,11 +11,19 @@ Característica: Crear cuenta
     Y repita la contraseña
     Y presione el botón "Registrarse"
 
-  Escenario: Ingresar usuario existente o dejar campo vacío
+  Escenario: Ingresar usuario existente
+  o dejar campo vacío
+  o se excede de 15 caracteres
     Entonces debería ver un error en el campo "Usuario"
 
-  Escenario: Las contraseñas no coinciden o alguno de los dos campos está vacío
-    Entonces debería ver un error en el campo "Contraseña" y "Confirmar contraseña"
+  Escenario: El campo "Contraseña" está vacío
+  o el campo contraseña tiene menos de 6 caracteres
+  o el campo contraseña se excede de 100 caracteres
+    Entonces debería ver un error en el campo "Contraseña"
 
-  Escenario: El usuario no existe y las contraseñas coinciden
+  Escenario: El campo "Confirmar contraseña" está vacío
+  o las contraseñas no coinciden
+    Entonces debería ver un error en el campo "Confirmar contraseña"
+
+  Escenario: El usuario no existe, las contraseñas son correctas y coinciden
     Entonces debería registrarse el usuario y dirigirme a la pantalla "Dashboard"

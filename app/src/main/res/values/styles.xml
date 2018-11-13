@@ -6,83 +6,93 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorControlHighlight">@android:color/white</item>
     </style>
 
-    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="FirstScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorControlHighlight">@android:color/white</item>
     </style>
 
-    <style name="Centered" parent="AppTheme">
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:colorControlHighlight">@android:color/white</item>
+    </style>
+
+    <style name="CenteredButton" parent="Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">50dp</item>
         <item name="android:layout_marginEnd">50dp</item>
-    </style>
-
-    <style name="Button" parent="Centered">
         <item name="android:textSize">30sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Button.1">
-        <item name="android:background">@drawable/button1_shape</item>
-        <item name="android:textColor">@color/colorButton1Text</item>
-    </style>
-
-    <style name="Button.2">
-        <item name="android:background">@drawable/button2_shape</item>
-        <item name="android:textColor">@color/colorButton2Text</item>
+    <style name="CenteredButton.Bottom">
         <item name="android:layout_marginBottom">70dp</item>
     </style>
 
-    <style name="Title" parent="Centered">
+    <style name="LoginTheme.Title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">50dp</item>
+        <item name="android:layout_marginStart">50dp</item>
+        <item name="android:layout_marginTop">70dp</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:textSize">50sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:layout_marginTop">70dp</item>
     </style>
 
-    <style name="Input" parent="Centered">
+    <style name="LoginTheme.InputLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">25dp</item>
         <item name="android:layout_marginEnd">25dp</item>
+    </style>
+
+    <style name="LoginTheme.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">10dp</item>
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="Input.User">
-        <item name="android:drawableStart">@drawable/ic_face_black_48dp</item>
+    <style name="LoginTheme.EditText.User">
+        <item name="android:drawableStart">@drawable/ic_face_black</item>
         <item name="android:inputType">textPersonName</item>
     </style>
 
-    <style name="Input.Password">
-        <item name="android:drawableStart">@drawable/ic_lock_outline_black_48dp</item>
+    <style name="LoginTheme.EditText.Password">
+        <item name="android:drawableStart">@drawable/ic_lock_outline_black</item>
         <item name="android:inputType">textPassword</item>
     </style>
 
-    <style name="Input.Email">
-        <item name="android:drawableStart">@drawable/ic_mail_outline_black_48dp</item>
+    <style name="LoginTheme.EditText.Email">
+        <item name="android:drawableStart">@drawable/ic_mail_outline_black</item>
         <item name="android:inputType">textEmailAddress</item>
     </style>
 
-    <style name="Input.Code">
-        <item name="android:drawableStart">@drawable/ic_dialpad_black_48dp</item>
+    <style name="LoginTheme.EditText.Code">
+        <item name="android:drawableStart">@drawable/ic_dialpad_black</item>
         <item name="android:inputType">numberPassword</item>
     </style>
 
-    <style name="FormText" parent="AppTheme">
+    <style name="LoginTheme.FormText">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">25dp</item>
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="FormText.Link">
+    <style name="LoginTheme.FormText.Link">
         <item name="android:textColor">@color/colorLink</item>
         <item name="android:layout_marginTop">35dp</item>
     </style>
 
-    <style name="FormText.Paragraph">
+    <style name="LoginTheme.FormText.Paragraph">
         <item name="android:layout_marginEnd">25dp</item>
         <item name="android:textAlignment">center</item>
     </style>
@@ -95,4 +105,87 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DashboardFABLabel">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginEnd">25dp</item>
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.TextView.Date">
+        <item name="android:drawableLeft">@drawable/ic_date</item>
+    </style>
+
+    <style name="AppTheme.TextView.Time">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:drawableLeft">@drawable/ic_time</item>
+    </style>
+
+    <style name="AppTheme.InputLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">25dp</item>
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
+
+    <style name="AppTheme.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.EditText.TaskName">
+        <item name="android:drawableStart">@drawable/ic_task_name</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="AppTheme.EditText.TaskLocation">
+        <item name="android:drawableStart">@drawable/ic_location</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="AppTheme.EditText.ProjectName">
+        <item name="android:drawableStart">@drawable/ic_project_name</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="AppTheme.EditText.ProjectClient">
+        <item name="android:drawableStart">@drawable/ic_group</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="AppTheme.EditText.ProjectDescription">
+        <item name="android:drawableStart">@drawable/ic_description</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:maxLines">6</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
+    <style name="AppTheme.ImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
+
+    <style name="AppTheme.Spinner">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">25dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginTop">37dp</item>
+    </style>
+
 </resources>

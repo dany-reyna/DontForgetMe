@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_layout_task"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/task_item_padding">
+
+    <ImageView
+        android:id="@+id/image_view_priority"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="@string/priority"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_priority_low" />
+
+    <TextView
+        android:id="@+id/text_view_task_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/task_name_sample"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/image_view_priority"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/task_start_datetime_sample"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_location"
+        app:layout_constraintStart_toEndOf="@+id/image_view_priority"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_name" />
+
+    <TextView
+        android:id="@+id/text_view_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/task_location_sample"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_view_priority"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_date" />
+
+    <ImageView
+        android:id="@+id/image_view_linked_project"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/project"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_project_bookmark_red" />
+</android.support.constraint.ConstraintLayout>

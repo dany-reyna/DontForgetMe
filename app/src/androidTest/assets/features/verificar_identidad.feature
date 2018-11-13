@@ -9,6 +9,8 @@ Característica: Verificar identidad
     Y presione el botón "Siguiente"
 
   Escenario: Ingresar código incorrecto
+  o el campo está vacío
+  o no es de 6 caracteres
     Entonces debería ver un error en el campo "Código"
 
   Escenario: Ingresar código correcto

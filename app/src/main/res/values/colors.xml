@@ -4,9 +4,25 @@
     <color name="colorPrimaryDark">#1DB4BA</color>
     <color name="colorAccent">#6200EE</color>
     <color name="colorBackground">#FFFFFF</color>
-    <color name="colorButton1Background">#FFFFFF</color>
-    <color name="colorButton1Stroke">#000000</color>
-    <color name="colorButton1Text">#000000</color>
-    <color name="colorButton2Text">#FFFFFF</color>
     <color name="colorLink">#0000FF</color>
+
+    <color name="colorBlackSemiTransparent">#B2000000</color>
+
+    <color name="colorFAM">#E80C7A</color>
+    <color name="colorFAMPressed">#B5095F</color>
+    <color name="colorFABPressed">#F1F1F1</color>
+
+    <color name="colorPriorityLow">#45C48B</color>
+    <color name="colorPriorityMedium">#FFD039</color>
+    <color name="colorPriorityHigh">#EB3E4A</color>
+
+    <color name="colorProjectPurple">#D083E2</color>
+    <color name="colorProjectGreen">#50D864</color>
+    <color name="colorProjectBlue">#3FB5F6</color>
+    <color name="colorProjectYellow">#FED847</color>
+    <color name="colorProjectBrown">#B39879</color>
+    <color name="colorProjectRed">#9C0001</color>
+    <color name="colorProjectOrange">#FD9D3C</color>
+
+    <color name="colorWarning">#F24949</color>
 </resources>
