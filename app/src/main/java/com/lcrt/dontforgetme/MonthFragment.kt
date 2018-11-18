@@ -5,12 +5,32 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.applandeo.materialcalendarview.CalendarView
+import com.applandeo.materialcalendarview.EventDay
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener
+import kotlinx.android.synthetic.main.fragment_month.*
+import java.util.*
 
 // ToDo: pass this extra with the selected date to SpecificDateActivity
 internal const val EXTRA_SPECIFIC_DATE = "com.lcrt.dontforgetme.SPECIFIC_DATE"
 
 class MonthFragment : Fragment() {
+    val events = ArrayList<EventDay>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // ToDo: Get dates of months from database
+        val calendar = Calendar.getInstance()
+        events.add( EventDay(calendar,R.mipmap.alarm))
+        monthCalendar.setEvents(events)
+
+        monthCalendar.setOnDayClickListener {
+            fun onDayClick(eventDay: EventDay){
+                val clickedDayCalendar = eventDay.calendar
+                //ToDo: Check if a clicked day have a task
+            }
+        }
+
+
+
         return inflater.inflate(R.layout.fragment_month, container, false)
     }
 
