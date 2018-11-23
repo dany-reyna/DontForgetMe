@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.applandeo.materialcalendarview.CalendarView
 import com.applandeo.materialcalendarview.EventDay
-import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import kotlinx.android.synthetic.main.fragment_month.*
 import java.util.*
 
@@ -16,10 +15,20 @@ internal const val EXTRA_SPECIFIC_DATE = "com.lcrt.dontforgetme.SPECIFIC_DATE"
 
 class MonthFragment : Fragment() {
     val events = ArrayList<EventDay>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_month, container, false)
+
+    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         // ToDo: Get dates of months from database
         val calendar = Calendar.getInstance()
-        events.add( EventDay(calendar,R.mipmap.alarm))
+        calendar.set(2018,10,15)
+        events.add(EventDay(calendar, R.mipmap.alarm))
+
+
         monthCalendar.setEvents(events)
 
         monthCalendar.setOnDayClickListener {
@@ -29,9 +38,6 @@ class MonthFragment : Fragment() {
             }
         }
 
-
-
-        return inflater.inflate(R.layout.fragment_month, container, false)
     }
 
     companion object {
