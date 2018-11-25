@@ -2,6 +2,7 @@ package com.lcrt.dontforgetme
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,12 +32,20 @@ class MonthFragment : Fragment() {
 
         monthCalendar.setEvents(events)
 
-        monthCalendar.setOnDayClickListener {
+        monthCalendar.setOnDayClickListener { eventDay ->
+            //ToDo: Check if a clicked day have a task
+            Log.d("Clicked",eventDay.calendar.get(Calendar.DAY_OF_MONTH).toString().plus(eventDay.calendar.get(Calendar.MONTH).toString().plus(eventDay.calendar.get(Calendar.YEAR).toString())))
+
+        }
+
+
+       /* monthCalendar.setOnDayClickListener {
             fun onDayClick(eventDay: EventDay){
                 val clickedDayCalendar = eventDay.calendar
                 //ToDo: Check if a clicked day have a task
+                Log.d("Clicked",eventDay.calendar.toString())
             }
-        }
+        }*/
 
     }
 
