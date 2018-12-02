@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_change_password.*
+import com.lcrt.dontforgetme.DataBaseHelperUsers
 
 class ChangePassword : AppCompatActivity() {
 
+    private lateinit var UsersDB: DataBaseHelperUsers
     private lateinit var passwordInput: String
     private lateinit var confirmPasswordInput: String
     private lateinit var usernameInput: String
@@ -14,7 +16,7 @@ class ChangePassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
-
+        UsersDB = DataBaseHelperUsers(this)
         if (intent.hasExtra(EXTRA_USER)) {
             usernameInput = intent.getStringExtra(EXTRA_USER)
         }
@@ -72,14 +74,15 @@ class ChangePassword : AppCompatActivity() {
     private fun validateInput() {
         if (!validatePassword() or !validateConfirmPassword()) {
             return
+        } else {
+            //ToDo: update password on DB
+            UsersDB.changePassword(usernameInput, passwordInput)
         }
 
-        //ToDo: update password on DB
-
-        val intent = Intent(this, Dashboard::class.java).apply {
+        /*val intent = Intent(this, Dashboard::class.java).apply {
             putExtra(EXTRA_USER, usernameInput)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        startActivity(intent)
+        startActivity(intent)*/
     }
 }

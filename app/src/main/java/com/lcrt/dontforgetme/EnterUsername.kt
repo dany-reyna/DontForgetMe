@@ -4,16 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_enter_username.*
+import com.lcrt.dontforgetme.DataBaseHelperUsers
+
 
 internal const val EXTRA_USER = "com.lcrt.dontforgetme.USER"
 
 class EnterUsername : AppCompatActivity() {
     private lateinit var usernameInput: String
+    private lateinit var UsersDB: DataBaseHelperUsers
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_username)
-
+        UsersDB = DataBaseHelperUsers(this)
         button_signin_next.setOnClickListener {
             validateInput()
         }
@@ -37,7 +41,11 @@ class EnterUsername : AppCompatActivity() {
                 text_input_layout_signin_user.error = getString(R.string.long_username_error_message)
                 false
             }
-            //ToDo: check on DB if username does not exist, assign text_input_layout_signin_user.error & return false
+            !UsersDB.checkUser(usernameInput) -> {
+                //ToDo: check on DB if username does not exist, assign text_input_layout_signin_user.error & return false
+                text_input_layout_signin_user.error = "El Usuario que desea ingresar no existe"
+                false
+            }
             else -> {
                 text_input_layout_signin_user.error = null
                 true
