@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_change_password.*
 import com.lcrt.dontforgetme.DataBaseHelperUsers
 
+
 class ChangePassword : AppCompatActivity() {
 
     private lateinit var UsersDB: DataBaseHelperUsers

@@ -118,7 +118,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginEnd">25dp</item>
         <item name="android:layout_marginStart">25dp</item>
-        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginTop">20dp</item>
         <item name="android:textSize">20sp</item>
     </style>
 
@@ -136,7 +136,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">25dp</item>
         <item name="android:layout_marginStart">25dp</item>
-        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginTop">20dp</item>
     </style>
 
     <style name="AppTheme.EditText">
@@ -169,7 +169,7 @@
     <style name="AppTheme.EditText.ProjectDescription">
         <item name="android:drawableStart">@drawable/ic_description</item>
         <item name="android:inputType">textMultiLine</item>
-        <item name="android:maxLines">6</item>
+        <item name="android:maxLines">5</item>
         <item name="android:scrollbars">vertical</item>
     </style>
 
@@ -177,7 +177,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">25dp</item>
-        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginTop">20dp</item>
     </style>
 
     <style name="AppTheme.Spinner">
@@ -185,7 +185,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">25dp</item>
         <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginTop">37dp</item>
+        <item name="android:layout_marginTop">32dp</item>
     </style>
 
 </resources>
