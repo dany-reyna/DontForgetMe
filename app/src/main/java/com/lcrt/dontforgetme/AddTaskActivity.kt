@@ -1,11 +1,18 @@
 package com.lcrt.dontforgetme
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.annotation.SuppressLint
+import android.app.*
+import android.app.NotificationManager.IMPORTANCE_DEFAULT
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.design.widget.Snackbar
 import android.support.design.widget.TextInputLayout
 import android.support.v4.app.NavUtils
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -22,6 +29,7 @@ open class AddTaskActivity : AppCompatActivity() {
     protected lateinit var taskLocationInput: String
     protected lateinit var taskStartInput: Calendar
     protected lateinit var taskEndInput: Calendar
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +104,7 @@ open class AddTaskActivity : AppCompatActivity() {
         val projectEntries = ArrayList<Project>()
 
         // ToDo: replace projectEntries below with all projects from DB
-        projectEntries.add(Project(1, "Proyecto 1", "Morado", "Cliente 1", "Un proyecto", "2018-11-08"))
+        projectEntries.add(Project(1, "Proyecto 1", "Morado", "Cliente 1", "Un proyecto", "2018-12-10"))
         projectEntries.add(Project(2, "Proyecto 2", "Naranja", "Cliente 2", "Un proyecto", "2018-11-08"))
         projectEntries.add(Project(3, "Proyecto 3", "Azul", "Cliente 3", "Un proyecto", "2018-11-08"))
         projectEntries.add(Project(4, "Proyecto 4", "Cafe", "Cliente 4", "Un proyecto", "2018-11-08"))
@@ -313,11 +321,41 @@ open class AddTaskActivity : AppCompatActivity() {
         val location = taskLocationInput
         val startDate = sqliteDateTimeFormat.format(taskStartInput.time)
         val endDate = sqliteDateTimeFormat.format(taskEndInput.time)
+
         val notificationTime = spinner_add_task_notification.selectedItem.toString()
         val projectId = (spinner_add_task_linked_project.selectedItem as Project).id
 
+        val res = when(notificationTime){
+            is " " -> -1
+            //Restar lo de  la prioridad
+            else -> {
+            }
+        }
         // ToDo: set Notifications
 
+        startAlarm(taskStartInput, 1 ,name,"Hey, Listen!",R.drawable.ic_priority_high);
+
         finish()
+    }
+
+    private fun startAlarm(c: Calendar, id: Int, title: String, message: String, icon: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java).apply {
+            putExtra(EXTRA_TASK_NOTIFICATION_ID, id)
+            putExtra(EXTRA_NOTIFICATION_TITLE, title)
+            putExtra(EXTRA_NOTIFICATION_MESSAGE, message)
+            putExtra(EXTRA_NOTIFICATION_ICON, icon)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+    }
+
+    private fun cancelAlarm(id: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.cancel(pendingIntent)
     }
 }
