@@ -15,6 +15,7 @@ import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -326,13 +327,18 @@ open class AddTaskActivity : AppCompatActivity() {
         val projectId = (spinner_add_task_linked_project.selectedItem as Project).id
 
         val res = when(notificationTime){
-            is " " -> -1
-            //Restar lo de  la prioridad
-            else -> {
-            }
+             "Ninguna" -> 0
+            "1 hora Antes"-> -1
+            "2 horas antes" ->- 2
+            "1 dia antes"-> -24
+            "2 dias antes"->-48
+            "1 semana antes"-> -168
+            else -> 0
         }
-        // ToDo: set Notifications
 
+        taskStartInput.add(Calendar.HOUR,res)
+
+        //ToDo: Change id of notification
         startAlarm(taskStartInput, 1 ,name,"Hey, Listen!",R.drawable.ic_priority_high);
 
         finish()
