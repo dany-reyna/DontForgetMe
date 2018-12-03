@@ -49,7 +49,12 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
             return true;
         }
     }
-
+    public Cursor getLastString(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT "+COL1+" FROM "+TABLE_NAME+" ORDER BY "+COL1+" DESC LIMIT 1";
+        Cursor datos =  db.rawQuery(query,null);
+        return datos;
+    }
     public boolean deleteProject(String ProjectId, DataBaseHelperTask TasksDb){
         SQLiteDatabase dbp = this.getWritableDatabase();
         SQLiteDatabase dbt = TasksDb.getWritableDatabase();

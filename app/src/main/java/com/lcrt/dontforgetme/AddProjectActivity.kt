@@ -1,16 +1,22 @@
 package com.lcrt.dontforgetme
 
+import android.app.AlarmManager
 import android.app.DatePickerDialog
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.TextInputLayout
 import android.support.v4.app.NavUtils
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import com.lcrt.dontforgetme.R.string.project
 import kotlinx.android.synthetic.main.activity_add_project.*
 import java.util.*
 
@@ -177,6 +183,7 @@ open class AddProjectActivity : AppCompatActivity() {
         }
     }
 
+
     protected fun validateDeadline(): Boolean {
         return validateDateSet() && validateDateBeforeNow()
     }
@@ -231,13 +238,42 @@ open class AddProjectActivity : AppCompatActivity() {
         val client = projectClientInput
         val description = projectDescriptionInput
         val deadline = sqliteDateFormat.format(projectDeadlineInput.time)
+        var index = ""
         if(UsersDB.addProject(name,color,client,description,deadline)){
+            val cur = this.UsersDB.lastString
+            cur.moveToFirst()
+            index =cur.getString(0)
+
+
             Toast.makeText(applicationContext, "Proyecto agregado", Toast.LENGTH_SHORT).show()
         }else{
             Toast.makeText(applicationContext, "Proyecto no agregado", Toast.LENGTH_SHORT).show()
         }
         // ToDo: set Notifications
+        projectDeadlineInput.add(Calendar.HOUR,-24)
+        Log.d("Calendar",projectDeadlineInput.toString())
+        startAlarm(projectDeadlineInput, index.toInt(),projectNameInput,"Recuerda que mañana termina el proyecto ",R.drawable.ic_priority_high)
 
         finish()
+    }
+    private fun startAlarm(c: Calendar, id: Int, title: String, message: String, icon: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java).apply {
+            putExtra(EXTRA_TASK_NOTIFICATION_ID, id)
+            putExtra(EXTRA_NOTIFICATION_TITLE, title)
+            putExtra(EXTRA_NOTIFICATION_MESSAGE, message)
+            putExtra(EXTRA_NOTIFICATION_ICON, icon)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+    }
+
+    private fun cancelAlarm(id: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.cancel(pendingIntent)
     }
 }
