@@ -20,12 +20,13 @@ open class AddProjectActivity : AppCompatActivity() {
     protected lateinit var projectClientInput: String
     protected lateinit var projectDescriptionInput: String
     protected lateinit var projectDeadlineInput: Calendar
+    private lateinit var UsersDB: DataBaseHelperProject
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_project)
-
+        UsersDB = DataBaseHelperProject(this)
         setData()
         setSpinnerListener(spinner_add_project_color, image_view_add_project_color)
         setPickerListener(text_view_add_project_deadline, projectDeadlineInput)
@@ -230,7 +231,11 @@ open class AddProjectActivity : AppCompatActivity() {
         val client = projectClientInput
         val description = projectDescriptionInput
         val deadline = sqliteDateFormat.format(projectDeadlineInput.time)
-
+        if(UsersDB.addProject(name,color,client,description,deadline)){
+            Toast.makeText(applicationContext, "Proyecto agregado", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(applicationContext, "Proyecto no agregado", Toast.LENGTH_SHORT).show()
+        }
         // ToDo: set Notifications
 
         finish()

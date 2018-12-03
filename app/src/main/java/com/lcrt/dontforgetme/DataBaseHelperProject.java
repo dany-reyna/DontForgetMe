@@ -1,8 +1,11 @@
 package com.lcrt.dontforgetme;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DataBaseHelperProject extends SQLiteOpenHelper{
 
@@ -30,5 +33,61 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         String dropTable = "DROP TABLE IF EXISTS "+ TABLE_NAME;
         db.execSQL(dropTable);
     }
+    public boolean addProject(String Name, String Color, String Client, String Description, String Deadline){
+        Log.d("Hey", Color);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues  = new ContentValues();
+        contentValues.put(COL2, Name);
+        contentValues.put(COL3, Client);
+        contentValues.put(COL4, Description);
+        contentValues.put(COL5, Deadline);
+        contentValues.put(COL6, Color);
+        long result = db.insert(TABLE_NAME, null, contentValues );
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
+    public boolean deleteProject(String ProjectId, DataBaseHelperTask TasksDb){
+        SQLiteDatabase dbp = this.getWritableDatabase();
+        SQLiteDatabase dbt = TasksDb.getWritableDatabase();
+        long resulttask = dbt.delete("Tasks","Id_Project="+ProjectId,null);
+        long resultproject = dbp.delete(TABLE_NAME,COL1+"="+ProjectId,null);
+        Log.d("Task","Valor"+resulttask);
+        Log.d("Project","Valor"+resultproject);
+        if((resulttask != -1 || resulttask ==0) && resultproject != -1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public Cursor getAllProjects(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAME;
+        Log.d(TAG, query);
+        Cursor datos = db.rawQuery(query, null);
+        return datos;
+    }
+
+    public boolean updateProject(String ProjectId, String Name, String Client, String Description, String Color, String Deadline){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //String query = "UPDATE "+TABLE_NAME+" SET "+COL2 + " = "+Name+", "+COL3 + " = "+ Client+", "+COL4+" = "+Description+", "+COL5+" = "+Deadline+", "+COL6+" = "+Color+" WHERE "+COL1+" = "+ProjectId;
+        //Log.d("Update Query",query);
+        ContentValues contentValues  = new ContentValues();
+        contentValues.put(COL2,Name);
+        contentValues.put(COL3,Client);
+        contentValues.put(COL4,Description);
+        contentValues.put(COL5, Deadline);
+        contentValues.put(COL6, Color);
+        long result = db.update(TABLE_NAME,contentValues,COL1+"="+ProjectId,null);
+        if (result == -1){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
 }

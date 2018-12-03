@@ -5,17 +5,19 @@ import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_edit_project.*
 import java.util.*
 
 class EditProjectActivity : AddProjectActivity() {
 
     private lateinit var project: Project
+    private lateinit var UsersDB: DataBaseHelperProject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_project)
-
+        UsersDB = DataBaseHelperProject(this)
         getIncomingIntent()
         setSpinnerListener(spinner_edit_project_color, image_view_edit_project_color)
         setPickerListener(text_view_edit_project_deadline, projectDeadlineInput)
@@ -75,9 +77,15 @@ class EditProjectActivity : AddProjectActivity() {
         if (!validateName(text_input_layout_edit_project_name)
                 or !validateClient(text_input_layout_edit_project_client)
                 or !validateDescription(text_input_layout_edit_project_description)
-                or !validateDeadline()) {
+                ) {
             return
         }
+        /*if (!validateName(text_input_layout_edit_project_name)
+                or !validateClient(text_input_layout_edit_project_client)
+                or !validateDescription(text_input_layout_edit_project_description)
+                or !validateDeadline()) {
+            return
+        }*/
 
         // ToDo: UPDATE name,color,client,description,deadline on DB with 'project.id'
         val name = projectNameInput
@@ -85,7 +93,11 @@ class EditProjectActivity : AddProjectActivity() {
         val client = projectClientInput
         val description = projectDescriptionInput
         val deadline = sqliteDateFormat.format(projectDeadlineInput.time)
-
+        if(UsersDB.updateProject(project.id.toString(),name,client,description,color,deadline)){
+            Toast.makeText(applicationContext, "Proyecto editado", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(applicationContext, "Proyecto no editado", Toast.LENGTH_SHORT).show()
+        }
         // ToDo: set Notifications
 
         finish()
