@@ -32,6 +32,7 @@ class MonthFragment : Fragment() {
 
         monthCalendar.setEvents(events)
 
+
         monthCalendar.setOnDayClickListener { eventDay ->
             //ToDo: Check if a clicked day have a task
             Log.d("Clicked",eventDay.calendar.get(Calendar.DAY_OF_MONTH).toString()
