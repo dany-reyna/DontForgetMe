@@ -81,6 +81,17 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         return datos;
     }
 
+    public boolean ProjectExists(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAME;
+        Cursor datos = db.rawQuery(query,null);
+        if (datos.moveToFirst()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public boolean deleteProject(String ProjectId, DataBaseHelperTask TasksDb){
         SQLiteDatabase dbp = this.getWritableDatabase();
         SQLiteDatabase dbt = TasksDb.getWritableDatabase();
@@ -184,9 +195,16 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         return datos;
     }
 
-    public Cursor getMonthTask(String Year, String Month, String Day){
+    public Cursor getSpecificDateTask(String Year, String Month, String Day){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+TABLE_NAMET+" WHERE StartDate LIKE '%'"+Year+"-"+Month+"-"+Day+"'%'";
+        Cursor datos = db.rawQuery(query, null);
+        return datos;
+    }
+
+    public Cursor getMonthTask(String Month){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAMET+" WHERE StartDate LIKE '%'"+Month+"'%'";
         Cursor datos = db.rawQuery(query, null);
         return datos;
     }

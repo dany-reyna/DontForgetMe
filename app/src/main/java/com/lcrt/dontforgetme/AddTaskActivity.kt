@@ -121,7 +121,7 @@ open class AddTaskActivity : AppCompatActivity() {
                 projectEntries.add(Project(datos.getInt(0),datos.getString(1),
                         datos.getString(5),datos.getString(2),datos.getString(3),
                         datos.getString(4)))
-            }while (datos.moveToNext());
+            }while (datos.moveToNext())
         }else{
         }
         return projectEntries
