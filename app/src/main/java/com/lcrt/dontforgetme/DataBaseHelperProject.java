@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DataBaseHelperProject extends SQLiteOpenHelper{
-
+    //PROJECTS
     private static final String TAG = "DatabaseHelperProject";
     private static final String TABLE_NAME = "Projects";
     private static final String COL1 = "Id_Project";
@@ -18,6 +18,17 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
     private static final String COL5 = "Dead_Line";
     private static final String COL6 = "Color";
 
+    //TASKS
+    private static final String TABLE_NAMET = "Tasks";
+    private static final String COLT1 = "Id_Task";
+    private static final String COLT2 = "Id_Project";
+    private static final String COLT3 = "Name";
+    private static final String COLT4 = "Priority";
+    private static final String COLT5 = "Location";
+    private static final String COLT6 = "Init_Date";
+    private static final String COLT7 = "Final_Date";
+    private static final String COLT8 = "NotificationTime";
+
     public DataBaseHelperProject(Context context){
         super(context, TABLE_NAME, null, 1);
     }
@@ -25,13 +36,19 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+COL2+" TEXT, "+COL3+" TEXT, "+COL4 +" TEXT, "+COL5+" TEXT, "+COL6+" TEXT)";
+        String createTableTask = "CREATE TABLE " + TABLE_NAMET + " (" + COLT1+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ""+COLT2+" INTEGER, "+COLT3+" TEXT, "+COLT4 +" TEXT, "+COLT5+" TEXT, "+COLT6+" TEXT, " +
+                ""+COLT7+" TEXT, "+COLT8+" TEXT)";
         db.execSQL(createTable);
+        db.execSQL(createTableTask);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String dropTable = "DROP TABLE IF EXISTS "+ TABLE_NAME;
+        String dropTableTask = "DROP TABLE IF EXISTS "+ TABLE_NAMET;
         db.execSQL(dropTable);
+        db.execSQL(dropTableTask);
     }
     public boolean addProject(String Name, String Color, String Client, String Description, String Deadline){
         Log.d("Hey", Color);
@@ -50,6 +67,13 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         }
     }
 
+    public Cursor getLastString(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT "+COL1+" FROM "+TABLE_NAME+" ORDER BY "+COL1+" DESC LIMIT 1";
+        Cursor datos =  db.rawQuery(query,null);
+        return datos;
+    }
+
     public boolean deleteProject(String ProjectId, DataBaseHelperTask TasksDb){
         SQLiteDatabase dbp = this.getWritableDatabase();
         SQLiteDatabase dbt = TasksDb.getWritableDatabase();
@@ -57,7 +81,7 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         long resultproject = dbp.delete(TABLE_NAME,COL1+"="+ProjectId,null);
         Log.d("Task","Valor"+resulttask);
         Log.d("Project","Valor"+resultproject);
-        if((resulttask != -1 || resulttask ==0) && resultproject != -1){
+        if(resulttask != -1  || resultproject != -1){
             return false;
         }else{
             return true;
@@ -88,6 +112,56 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         }else{
             return true;
         }
+    }
 
+    public boolean updateTask(String ProjectId, String name, String priority, String location, String startDate, String endDate, String notificationTime){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues  = new ContentValues();
+        contentValues.put(COLT3,name);
+        contentValues.put(COLT4,priority);
+        contentValues.put(COLT5,location);
+        contentValues.put(COLT6,startDate);
+        contentValues.put(COLT7,endDate);
+        contentValues.put(COLT8,notificationTime);
+        long result = db.update(TABLE_NAMET,contentValues,COLT1+"="+ProjectId,null);
+        if (result == -1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public boolean addTask(String Name, String Priority, String Location, String StartDate, String EndDate,
+                           String NotificationTime, String ProjectId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues  = new ContentValues();
+        contentValues.put(COLT2, ProjectId);
+        contentValues.put(COLT3, Name);
+        contentValues.put(COLT4, Priority);
+        contentValues.put(COLT5, Location);
+        contentValues.put(COLT6, StartDate);
+        contentValues.put(COLT7, EndDate);
+        contentValues.put(COLT8, NotificationTime);
+        long result = db.insert(TABLE_NAMET, null, contentValues );
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public Cursor getAllTasks(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String All = "SELECT a.*, b.* FROM Tasks a, Projects b WHERE a.Id_Project=b.Id_Project";
+        Log.d(TAG, All);
+        Cursor datos = db.rawQuery(All, null);
+        return datos;
+    }
+
+    public Cursor getMonthTask(String Year, String Month, String Day){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAMET+" WHERE StartDate LIKE '%'"+Year+"-"+Month+"-"+Day+"'%'";
+        Cursor datos = db.rawQuery(query, null);
+        return datos;
     }
 }

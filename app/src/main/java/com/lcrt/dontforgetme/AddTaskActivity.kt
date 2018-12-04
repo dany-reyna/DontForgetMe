@@ -5,6 +5,7 @@ import android.app.*
 import android.app.NotificationManager.IMPORTANCE_DEFAULT
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
@@ -30,12 +31,13 @@ open class AddTaskActivity : AppCompatActivity() {
     protected lateinit var taskLocationInput: String
     protected lateinit var taskStartInput: Calendar
     protected lateinit var taskEndInput: Calendar
+    private lateinit var UsersDBP: DataBaseHelperProject
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_task)
-
+        UsersDBP = DataBaseHelperProject(this)
         setData()
         setSpinnersListeners(spinner_add_task_linked_project, image_view_add_task_linked_project_color,
                 spinner_add_task_priority, image_view_add_task_priority)
@@ -105,18 +107,23 @@ open class AddTaskActivity : AppCompatActivity() {
         val projectEntries = ArrayList<Project>()
 
         // ToDo: replace projectEntries below with all projects from DB
-        projectEntries.add(Project(1, "Proyecto 1", "Morado", "Cliente 1", "Un proyecto", "2018-12-10"))
-        projectEntries.add(Project(2, "Proyecto 2", "Naranja", "Cliente 2", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(3, "Proyecto 3", "Azul", "Cliente 3", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(4, "Proyecto 4", "Cafe", "Cliente 4", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(5, "Proyecto 5", "Morado", "Cliente 5", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(6, "Proyecto 6", "Verde", "Cliente 6", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(7, "Proyecto 7", "Azul", "Cliente 7", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(8, "Proyecto 8", "Amarillo", "Cliente 8", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(9, "Proyecto 9", "Cafe", "Cliente 9", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(10, "Proyecto 10", "Rojo", "Cliente 10", "Un proyecto", "2018-11-08"))
-        projectEntries.add(Project(11, "Proyecto 11", "Naranja", "Cliente 11", "Un proyecto", "2018-11-08"))
 
+        var datos : Cursor = UsersDBP.allProjects
+        if (datos.moveToFirst()){
+            do{
+                Log.d("Task:",datos.getString(0))
+                Log.d("Task:",datos.getString(1))
+                Log.d("Task:",datos.getString(2))
+                Log.d("Task:",datos.getString(3))
+                Log.d("Task:",datos.getString(4))
+                Log.d("Task:",datos.getString(5))
+
+                projectEntries.add(Project(datos.getInt(0),datos.getString(1),
+                        datos.getString(5),datos.getString(2),datos.getString(3),
+                        datos.getString(4)))
+            }while (datos.moveToNext());
+        }else{
+        }
         return projectEntries
     }
 
@@ -325,7 +332,11 @@ open class AddTaskActivity : AppCompatActivity() {
 
         val notificationTime = spinner_add_task_notification.selectedItem.toString()
         val projectId = (spinner_add_task_linked_project.selectedItem as Project).id
-
+        if(UsersDBP.addTask(name,priority,location,startDate,endDate,notificationTime,projectId.toString())){
+            Toast.makeText(applicationContext, "Tarea agregado", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(applicationContext, "Tarea no agregado", Toast.LENGTH_SHORT).show()
+        }
         val res = when(notificationTime){
              "Ninguna" -> 0
             "1 hora Antes"-> -1

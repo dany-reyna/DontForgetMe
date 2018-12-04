@@ -30,6 +30,18 @@ data class Task(
         val linkedProjectColor: String
 ) : Parcelable
 
+@Parcelize
+data class TaskAux (
+        val id: Int,
+        val name: String,
+        val priority: String,
+        val location: String,
+        val startDateTime: String,
+        val endDateTime: String,
+        val notificationTime: String,
+        val linkedProjectId: Int
+):Parcelable
+
 internal fun getPriorityResourceId(priority: String): Int {
     return when (priority) {
         PRIORITY_LOW -> R.drawable.ic_priority_low

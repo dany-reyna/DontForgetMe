@@ -5,16 +5,19 @@ import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_edit_task.*
 import java.util.*
 
 class EditTaskActivity : AddTaskActivity() {
 
     private lateinit var task: Task
+    private lateinit var UsersDB: DataBaseHelperProject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_task)
+        UsersDB = DataBaseHelperProject(this)
 
         getIncomingIntent()
         setSpinnersListeners(spinner_edit_task_linked_project, image_view_edit_task_linked_project_color,
@@ -137,7 +140,11 @@ class EditTaskActivity : AddTaskActivity() {
         val endDate = sqliteDateTimeFormat.format(taskEndInput.time)
         val notificationTime = spinner_edit_task_notification.selectedItem.toString()
         val projectId = (spinner_edit_task_linked_project.selectedItem as Project).id
-
+        if (UsersDB.updateTask(projectId.toString(), name, priority, location, startDate, endDate, notificationTime)){
+            Toast.makeText(applicationContext, "Tarea editado", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(applicationContext, "Tarea no editado", Toast.LENGTH_SHORT).show()
+        }
         // ToDo: set Notifications
 
         finish()
