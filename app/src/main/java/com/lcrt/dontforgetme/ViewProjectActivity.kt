@@ -1,5 +1,8 @@
 package com.lcrt.dontforgetme
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -48,6 +51,7 @@ class ViewProjectActivity : AppCompatActivity() {
                         // ToDo: delete project and related tasks from DB
                         if(UsersDB.deleteProject(project.id.toString(),UsersDBTask)){
                             Toast.makeText(applicationContext, "Proyecto eliminado", Toast.LENGTH_SHORT).show()
+                            cancelAlarm(project.id)
                         }else{
                             Toast.makeText(applicationContext, "Proyecto no eliminado", Toast.LENGTH_SHORT).show()
                         }
@@ -79,5 +83,12 @@ class ViewProjectActivity : AppCompatActivity() {
             text_view_project_deadline.text = simpleDateFormatter.format(sqliteDateFormat.parse(project.deadline))
             Log.d("Hey", project.deadline)
         }
+    }
+    private fun cancelAlarm(id: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.cancel(pendingIntent)
     }
 }

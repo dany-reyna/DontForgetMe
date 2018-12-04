@@ -1,7 +1,12 @@
 package com.lcrt.dontforgetme
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -99,7 +104,31 @@ class EditProjectActivity : AddProjectActivity() {
             Toast.makeText(applicationContext, "Proyecto no editado", Toast.LENGTH_SHORT).show()
         }
         // ToDo: set Notifications
+        projectDeadlineInput.add(Calendar.HOUR,-24)
+        Log.d("Calendar",projectDeadlineInput.toString())
+        cancelAlarm(project.id)
+        startAlarm(projectDeadlineInput,project.id,projectNameInput,"Recuerda que mañana termina el proyecto",R.drawable.ic_priority_high)
 
         finish()
+    }
+    private fun startAlarm(c: Calendar, id: Int, title: String, message: String, icon: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java).apply {
+            putExtra(EXTRA_TASK_NOTIFICATION_ID, id)
+            putExtra(EXTRA_NOTIFICATION_TITLE, title)
+            putExtra(EXTRA_NOTIFICATION_MESSAGE, message)
+            putExtra(EXTRA_NOTIFICATION_ICON, icon)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+    }
+
+    private fun cancelAlarm(id: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.cancel(pendingIntent)
     }
 }
