@@ -6,15 +6,19 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_view_task.*
 
 class ViewTaskActivity : AppCompatActivity() {
 
     private lateinit var task: Task
+    private lateinit var UsersDB: DataBaseHelperProject
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_task)
+        UsersDB = DataBaseHelperProject(this)
 
         getIncomingIntent()
     }
@@ -38,6 +42,11 @@ class ViewTaskActivity : AppCompatActivity() {
                     setMessage(getString(R.string.delete_task_prompt))
                     setPositiveButton(getString(R.string.ok)) { _, _ ->
                         // ToDo: delete task from DB
+                        if(UsersDB.deleteTask(task.id.toString())){
+                            Toast.makeText(applicationContext, "Tarea eliminada", Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(applicationContext, "Tarea no eliminada", Toast.LENGTH_SHORT).show()
+                        }
                         finish()
                     }
                     setNegativeButton(getString(R.string.cancel), null)

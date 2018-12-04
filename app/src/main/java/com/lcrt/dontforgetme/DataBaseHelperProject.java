@@ -92,11 +92,10 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         }
     }
 
-    public boolean deleteProject(String ProjectId, DataBaseHelperTask TasksDb){
-        SQLiteDatabase dbp = this.getWritableDatabase();
-        SQLiteDatabase dbt = TasksDb.getWritableDatabase();
-        long resulttask = dbt.delete("Tasks","Id_Project="+ProjectId,null);
-        long resultproject = dbp.delete(TABLE_NAME,COL1+"="+ProjectId,null);
+    public boolean deleteProject(String ProjectId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long resulttask = db.delete("Tasks","Id_Project="+ProjectId,null);
+        long resultproject = db.delete(TABLE_NAME,COL1+"="+ProjectId,null);
         Log.d("Task","Valor"+resulttask);
         Log.d("Project","Valor"+resultproject);
         if(resulttask != -1  || resultproject != -1){
