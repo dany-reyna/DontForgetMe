@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_week.*
+import java.util.*
 
 class WeekFragment : Fragment() {
 
     private val mTasks = ArrayList<Task>()
+    private lateinit var UsersDB: DataBaseHelperProject
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_week, container, false)
@@ -20,13 +22,28 @@ class WeekFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        UsersDB = DataBaseHelperProject(activity)
         initLists()
     }
     private fun initLists() {
         // ToDo: read DB to add items to mTasks, get all tasks from Now to +7 days
+        val now = Calendar.getInstance()
+        val sevenDaysAfter = Calendar.getInstance()
+        sevenDaysAfter.add(Calendar.DAY_OF_MONTH,7)
 
+        val datosTasks = UsersDB.getWeekTasks(sqliteDateFormat.format(now.time), sqliteDateFormat.format(sevenDaysAfter.time))
+        if(datosTasks.moveToFirst()) {
+            do {
+
+                mTasks.add(Task(datosTasks.getInt(0), datosTasks.getString(1), datosTasks.getString(2),
+                        datosTasks.getString(3),
+                        datosTasks.getString(4), datosTasks.getString(5),
+                        datosTasks.getString(6),
+                        datosTasks.getInt(7), datosTasks.getString(8), datosTasks.getString(9)))
+            } while (datosTasks.moveToNext())
+        }
         // ToDo: Delete sample tasks below
-        mTasks.add(Task(1, "Reunión", "Baja", "Calle YYY",
+        /*mTasks.add(Task(1, "Reunión", "Baja", "Calle YYY",
                 "2018-10-15 13:00", "2018-10-16 13:00",
                 "1 hora antes",
                 1, "Proyecto 1", "Morado"))
@@ -86,7 +103,7 @@ class WeekFragment : Fragment() {
                 "2018-10-17 18:20", "2018-10-18 18:20",
                 "1 semana antes",
                 6, "Proyecto 6", "Cafe"))
-
+        */
         initRecyclerView()
     }
 

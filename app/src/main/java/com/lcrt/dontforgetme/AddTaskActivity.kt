@@ -332,8 +332,13 @@ open class AddTaskActivity : AppCompatActivity() {
 
         val notificationTime = spinner_add_task_notification.selectedItem.toString()
         val projectId = (spinner_add_task_linked_project.selectedItem as Project).id
+        var index = ""
         if(UsersDBP.addTask(name,priority,location,startDate,endDate,notificationTime,projectId.toString())){
             Toast.makeText(applicationContext, "Tarea agregado", Toast.LENGTH_SHORT).show()
+            val cur = UsersDBP.lastTask
+            cur.moveToFirst()
+            index = cur.getString(0)
+            Log.d("INDICE",index)
         }else{
             Toast.makeText(applicationContext, "Tarea no agregado", Toast.LENGTH_SHORT).show()
         }
@@ -350,7 +355,7 @@ open class AddTaskActivity : AppCompatActivity() {
         taskStartInput.add(Calendar.HOUR,res)
 
         //ToDo: Change id of notification
-        startAlarm(taskStartInput, 1 ,name,"Hey, Listen!",R.drawable.ic_priority_high);
+        startAlarm(taskStartInput, index.toInt() ,name,"Hey, Listen! \n Tienes una tarea pendiente",R.drawable.ic_priority_high);
 
         finish()
     }

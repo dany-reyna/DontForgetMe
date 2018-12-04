@@ -1,7 +1,13 @@
 package com.lcrt.dontforgetme
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -76,8 +82,14 @@ class EditTaskActivity : AddTaskActivity() {
     }
 
     private fun getProject(id: Int): Project {
+        val datos: Cursor = UsersDB.getProjectById(id.toString())
         // ToDo: replace below with the project from DB using parameter 'id'
-        return Project(7, "Proyecto 7", "Azul", "Cliente 7", "Un proyecto", "2018-11-08")
+        if(datos.moveToFirst()){
+            return return Project(datos.getInt(0),datos.getString(1),datos.getString(5),
+                    datos.getString(2),datos.getString(3),datos.getString(4))
+        }else{
+            return Project(7, "Proyecto 7", "Azul", "Cliente 7", "Un proyecto", "2018-11-08")
+        }
     }
 
     private fun setPriorityData(priority: String) {
@@ -146,7 +158,40 @@ class EditTaskActivity : AddTaskActivity() {
             Toast.makeText(applicationContext, "Tarea no editada", Toast.LENGTH_SHORT).show()
         }
         // ToDo: set Notifications
+        val res = when(notificationTime){
+            "Ninguna" -> 0
+            "1 hora Antes"-> -1
+            "2 horas antes" ->- 2
+            "1 dia antes"-> -24
+            "2 dias antes"->-48
+            "1 semana antes"-> -168
+            else -> 0
+        }
+        taskStartInput.add(Calendar.HOUR,res)
+
+        cancelAlarm(task.id)
+        startAlarm(taskStartInput,task.id,taskNameInput,"Hey, Listen! \n Tienes una tarea pendiente",R.drawable.ic_priority_high)
 
         finish()
+    }
+    private fun startAlarm(c: Calendar, id: Int, title: String, message: String, icon: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java).apply {
+            putExtra(EXTRA_TASK_NOTIFICATION_ID, id)
+            putExtra(EXTRA_NOTIFICATION_TITLE, title)
+            putExtra(EXTRA_NOTIFICATION_MESSAGE, message)
+            putExtra(EXTRA_NOTIFICATION_ICON, icon)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+    }
+
+    private fun cancelAlarm(id: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0)
+
+        alarmManager.cancel(pendingIntent)
     }
 }

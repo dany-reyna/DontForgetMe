@@ -49,7 +49,7 @@ class ViewProjectActivity : AppCompatActivity() {
 
                     setPositiveButton(getString(R.string.ok)) { _, _ ->
                         // ToDo: delete project and related tasks from DB
-                        if(UsersDB.deleteProject(project.id.toString(),UsersDBTask)){
+                        if(UsersDB.deleteProject(project.id.toString())){
                             Toast.makeText(applicationContext, "Proyecto eliminado", Toast.LENGTH_SHORT).show()
                             cancelAlarm(project.id)
                         }else{

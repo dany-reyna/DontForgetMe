@@ -245,6 +245,9 @@ open class AddProjectActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Proyecto no agregado", Toast.LENGTH_SHORT).show()
         }
         // ToDo: set Notifications
+        projectDeadlineInput.add(Calendar.HOUR,-24)
+
+        startAlarm(projectDeadlineInput, index.toInt(),projectNameInput,"Recuerda que mañana termina el proyecto ",R.drawable.ic_priority_high)
 
         finish()
     }

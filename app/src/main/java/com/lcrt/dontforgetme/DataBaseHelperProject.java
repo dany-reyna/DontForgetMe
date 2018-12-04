@@ -73,7 +73,12 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         Cursor datos =  db.rawQuery(query,null);
         return datos;
     }
-
+    public Cursor getLastTask(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT "+COLT1+" FROM "+TABLE_NAMET+" ORDER BY "+COLT1+" DESC LIMIT 1";
+        Cursor datos =  db.rawQuery(query,null);
+        return datos;
+    }
     public Cursor getProjectById(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+TABLE_NAME+" WHERE Id_Project="+id;
@@ -94,11 +99,11 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
 
     public boolean deleteProject(String ProjectId){
         SQLiteDatabase db = this.getWritableDatabase();
-        long resulttask = db.delete("Tasks","Id_Project="+ProjectId,null);
+        long resulttask = db.delete(TABLE_NAMET,"Id_Project="+ProjectId,null);
         long resultproject = db.delete(TABLE_NAME,COL1+"="+ProjectId,null);
         Log.d("Task","Valor"+resulttask);
         Log.d("Project","Valor"+resultproject);
-        if(resulttask != -1  || resultproject != -1){
+        if(resulttask != -1  && resultproject != -1){
             return false;
         }else{
             return true;
@@ -194,16 +199,22 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         return datos;
     }
 
-    public Cursor getSpecificDateTask(String Year, String Month, String Day){
+    public Cursor getSpecificDateTask(String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "+TABLE_NAMET+" WHERE StartDate LIKE '%'"+Year+"-"+Month+"-"+Day+"'%'";
+        String query = "SELECT a.Id_Task, a.Name, a.Priority, a.Location, a.Init_Date, a.Final_Date, a.NotificationTime, b.Id_Project, b.Name, b.Color FROM Tasks a, Projects b WHERE a.Id_Project=b.Id_Project AND a.Init_Date LIKE '%"+date+"%' ";
+        Log.d("GET SPECIFIC DATE TASK", query);
         Cursor datos = db.rawQuery(query, null);
         return datos;
     }
-
+    public Cursor getWeekTasks(String now,String sevenDaysAfter ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT a.Id_Task, a.Name, a.Priority, a.Location, a.Init_Date, a.Final_Date, a.NotificationTime, b.Id_Project, b.Name, b.Color FROM Tasks a, Projects b WHERE a.Id_Project=b.Id_Project AND Init_Date BETWEEN '"+now+"' AND '"+sevenDaysAfter+"' ";
+        Cursor datos = db.rawQuery(query, null);
+        return datos;
+    }
     public Cursor getMonthTask(String Month){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "+TABLE_NAMET+" WHERE StartDate LIKE '%'"+Month+"'%'";
+        String query = "SELECT * FROM "+TABLE_NAMET+" WHERE Init_Date LIKE '%"+Month+"%'";
         Cursor datos = db.rawQuery(query, null);
         return datos;
     }

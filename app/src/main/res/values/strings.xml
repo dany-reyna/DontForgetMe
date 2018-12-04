@@ -115,4 +115,27 @@
     <string name="long_project_desc_error_message">La descripción debe tener máximo 200 caracteres</string>
     <string name="no_deadline_set_error">Selecciona una fecha tope</string>
     <string name="deadline_before_now_error">La fecha tope debe ser posterior a la fecha actual</string>
+
+    <string name="material_calendar_monday">L</string>
+    <string name="material_calendar_tuesday">M</string>
+    <string name="material_calendar_wednesday">M</string>
+    <string name="material_calendar_thursday">J</string>
+    <string name="material_calendar_friday">V</string>
+    <string name="material_calendar_saturday">S</string>
+    <string name="material_calendar_sunday">D</string>
+
+    <array name="material_calendar_months_array">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Novimbre</item>
+        <item>Diciembre</item>
+    </array>
 </resources>
