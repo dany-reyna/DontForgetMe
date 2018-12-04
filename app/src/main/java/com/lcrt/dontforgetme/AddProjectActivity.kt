@@ -229,7 +229,7 @@ open class AddProjectActivity : AppCompatActivity() {
             return
         }
 
-        // ToDo: INSERT name,color,client,description,deadline on DB
+        //ToDo: INSERT name,color,client,description,deadline on DB
         val name = projectNameInput
         val color = spinner_add_project_color.selectedItem.toString()
         val client = projectClientInput

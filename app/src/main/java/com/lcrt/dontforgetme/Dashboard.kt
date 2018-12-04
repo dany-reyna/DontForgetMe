@@ -11,9 +11,12 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class Dashboard : AppCompatActivity() {
 
+    private lateinit var UsersDB: DataBaseHelperProject
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+        UsersDB = DataBaseHelperProject(this)
 
         if (intent.hasExtra(EXTRA_USER)) {
             toolbar.title = getString(R.string.greeting, intent.getStringExtra(EXTRA_USER))
@@ -29,8 +32,13 @@ class Dashboard : AppCompatActivity() {
 
         fab_action_add_task.setOnClickListener {
             // ToDo: check at least one project exists on DB before starting AddTaskActivity
-            val intent = Intent(this, AddTaskActivity::class.java)
-            startActivity(intent)
+            if(UsersDB.ProjectExists()){
+                val intent = Intent(this, AddTaskActivity::class.java)
+                startActivity(intent)
+            }else{
+                Toast.makeText(applicationContext, "No existen los proyectos", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
