@@ -74,6 +74,13 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         return datos;
     }
 
+    public Cursor getProjectById(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "+TABLE_NAME+" WHERE Id_Project="+id;
+        Cursor datos = db.rawQuery(query,null);
+        return datos;
+    }
+
     public boolean deleteProject(String ProjectId, DataBaseHelperTask TasksDb){
         SQLiteDatabase dbp = this.getWritableDatabase();
         SQLiteDatabase dbt = TasksDb.getWritableDatabase();
@@ -82,6 +89,16 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         Log.d("Task","Valor"+resulttask);
         Log.d("Project","Valor"+resultproject);
         if(resulttask != -1  || resultproject != -1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public boolean deleteTask(String TaskId){
+        SQLiteDatabase dbp = this.getWritableDatabase();
+        long result = dbp.delete(TABLE_NAMET,COLT1+"="+TaskId,null);
+        if(result != -1){
             return false;
         }else{
             return true;
@@ -114,16 +131,17 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
         }
     }
 
-    public boolean updateTask(String ProjectId, String name, String priority, String location, String startDate, String endDate, String notificationTime){
+    public boolean updateTask(String TaskId, String name, String priority, String location, String startDate, String endDate, String notificationTime, String ProjectId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues  = new ContentValues();
+        contentValues.put(COLT2,ProjectId);
         contentValues.put(COLT3,name);
         contentValues.put(COLT4,priority);
         contentValues.put(COLT5,location);
         contentValues.put(COLT6,startDate);
         contentValues.put(COLT7,endDate);
         contentValues.put(COLT8,notificationTime);
-        long result = db.update(TABLE_NAMET,contentValues,COLT1+"="+ProjectId,null);
+        long result = db.update(TABLE_NAMET,contentValues,COLT1+"="+TaskId,null);
         if (result == -1){
             return false;
         }else{
@@ -153,6 +171,14 @@ public class DataBaseHelperProject extends SQLiteOpenHelper{
     public Cursor getAllTasks(){
         SQLiteDatabase db = this.getWritableDatabase();
         String All = "SELECT a.*, b.* FROM Tasks a, Projects b WHERE a.Id_Project=b.Id_Project";
+        Log.d(TAG, All);
+        Cursor datos = db.rawQuery(All, null);
+        return datos;
+    }
+
+    public Cursor getTodayTasks(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String All = "SELECT a.Id_Task, a.Name, a.Priority, a.Location, a.Init_Date, a.Final_Date, a.NotificationTime, b.Id_Project, b.Name, b.Color FROM Tasks a, Projects b WHERE a.Id_Project=b.Id_Project";
         Log.d(TAG, All);
         Cursor datos = db.rawQuery(All, null);
         return datos;

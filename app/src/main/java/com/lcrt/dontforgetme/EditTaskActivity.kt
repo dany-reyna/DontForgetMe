@@ -1,5 +1,6 @@
 package com.lcrt.dontforgetme
 
+import android.database.Cursor
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.Menu
@@ -74,10 +75,11 @@ class EditTaskActivity : AddTaskActivity() {
 
         image_view_edit_task_linked_project_color.setImageResource(getColorResourceId(color))
     }
-
     private fun getProject(id: Int): Project {
+        val datos : Cursor = UsersDB.getProjectById(id.toString())
         // ToDo: replace below with the project from DB using parameter 'id'
-        return Project(7, "Proyecto 7", "Azul", "Cliente 7", "Un proyecto", "2018-11-08")
+        return Project(datos.getInt(0), datos.getString(1), datos.getString(5),
+                datos.getString(2), datos.getString(3), datos.getString(4))
     }
 
     private fun setPriorityData(priority: String) {
@@ -140,10 +142,10 @@ class EditTaskActivity : AddTaskActivity() {
         val endDate = sqliteDateTimeFormat.format(taskEndInput.time)
         val notificationTime = spinner_edit_task_notification.selectedItem.toString()
         val projectId = (spinner_edit_task_linked_project.selectedItem as Project).id
-        if (UsersDB.updateTask(projectId.toString(), name, priority, location, startDate, endDate, notificationTime)){
-            Toast.makeText(applicationContext, "Tarea editado", Toast.LENGTH_SHORT).show()
+        if (UsersDB.updateTask(task.id.toString(), name, priority, location, startDate, endDate, notificationTime, projectId.toString())){
+            Toast.makeText(applicationContext, "Tarea editada", Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(applicationContext, "Tarea no editado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Tarea no editada", Toast.LENGTH_SHORT).show()
         }
         // ToDo: set Notifications
 

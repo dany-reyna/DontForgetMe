@@ -44,15 +44,16 @@ class TodayFragment : Fragment() {
         private static final String COL6 = "Final_Date";
         private static final String COL7 = "NotificationTime";*/
 
-        var datosTasks : Cursor = UsersDBP.allTasks
+        var datosTasks : Cursor = UsersDBP.todayTasks
         //var datosProjects : Cursor = UsersDBP.allProjects
         if(datosTasks.moveToFirst()){
             do{
-                mTasks.add(Task(datosTasks.getInt(1), datosTasks.getString(2), datosTasks.getString(3),
-                        datosTasks.getString(4),
-                        datosTasks.getString(5), datosTasks.getString(6),
-                        datosTasks.getString(7),
-                        datosTasks.getInt(8), datosTasks.getString(9), datosTasks.getString(10)))
+                //Log.d("COLOR",datosTasks.getString(0));Log.d("COLOR",datosTasks.getString(1));Log.d("COLOR",datosTasks.getString(2));Log.d("COLOR",datosTasks.getString(3));Log.d("COLOR",datosTasks.getString(4));Log.d("COLOR",datosTasks.getString(5));Log.d("COLOR",datosTasks.getString(6));Log.d("COLOR",datosTasks.getString(7));Log.d("COLOR",datosTasks.getString(8));Log.d("COLOR",datosTasks.getString(9));
+                mTasks.add(Task(datosTasks.getInt(0), datosTasks.getString(1), datosTasks.getString(2),
+                        datosTasks.getString(3),
+                        datosTasks.getString(4), datosTasks.getString(5),
+                        datosTasks.getString(6),
+                        datosTasks.getInt(7), datosTasks.getString(8), datosTasks.getString(9)))
 
             }while (datosTasks.moveToNext())
         }
